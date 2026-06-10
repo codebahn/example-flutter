@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'counter.dart';
 
 void main() => runApp(const CounterApp());
 
@@ -24,45 +23,18 @@ class CounterPage extends StatefulWidget {
 }
 
 class _CounterPageState extends State<CounterPage> {
-  final _counter = Counter();
-
-  @override
-  void initState() {
-    super.initState();
-    _counter.addListener(() => setState(() {}));
-  }
-
-  @override
-  void dispose() {
-    _counter.dispose();
-    super.dispose();
-  }
+  int _count = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Counter')),
       body: Center(
-        child: Text(
-          '${_counter.value}',
-          style: Theme.of(context).textTheme.displayLarge,
-        ),
+        child: Text('$_count', style: Theme.of(context).textTheme.displayLarge),
       ),
-      floatingActionButton: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FloatingActionButton(
-            key: const Key('increment'),
-            onPressed: _counter.increment,
-            child: const Icon(Icons.add),
-          ),
-          const SizedBox(height: 8),
-          FloatingActionButton(
-            key: const Key('decrement'),
-            onPressed: _counter.decrement,
-            child: const Icon(Icons.remove),
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => setState(() => _count++),
+        child: const Icon(Icons.add),
       ),
     );
   }
