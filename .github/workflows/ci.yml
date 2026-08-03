@@ -4,13 +4,13 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: codebahn-small
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Flutter SDK
         run: |
-          FLUTTER_VERSION="3.29.3"
+          FLUTTER_VERSION="3.44.8"
           wget -qO flutter.tar.xz "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz"
           tar xf flutter.tar.xz -C /opt
           echo "/opt/flutter/bin" >> "$GITHUB_PATH"
